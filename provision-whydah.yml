@@ -28,10 +28,14 @@
     username: UserIdentityBackend
     group_id: net/whydah/identity
     app_name: UserIdentityBackend
-    env_mode: PROD
-    env_vars: -DIAM_MODE=PROD
+    #env_mode: PROD
+    #env_vars: -DIAM_MODE=PROD
+    #service_config_template: useridentitybackend.properties
+    #service_config: useridentitybackend.PROD.properties
+    env_mode:
+    env_vars: -DCONSTRETTO_TAGS=dev
     service_config_template: useridentitybackend.properties
-    service_config: useridentitybackend.PROD.properties
+    service_config: useridentitybackend_override.properties
     folders_to_copy: prodInitData
     #verify_service_url: http://localhost:9995/uib/authenticate/application/
   vars_files:
@@ -64,7 +68,7 @@
     username: SecurityTokenService
     group_id: net/whydah/token
     app_name: SecurityTokenService
-    env_vars: -DIAM_MODE=PROD -Dhazelcast.config=hazelcast.xml
+    env_vars: -DIAM_MODE=PROD -Dhazelcast.config=hazelcast.xml -DIAM_CONFIG=/home/{{username}}/{{service_config}}
     service_config_template: securitytokenservice.properties
     service_config: securitytokenservice.PROD.properties
 #    verify_service_url: http://localhost:9998/tokenservice/
@@ -83,7 +87,7 @@
     username: SSOLoginWebApp
     group_id: net/whydah/sso
     app_name: SSOLoginWebApp
-    env_vars: -DIAM_MODE=PROD
+    env_vars: -DIAM_MODE=PROD -DIAM_CONFIG=/home/{{username}}/{{service_config}}
     service_config_template: ssologinservice.properties
     service_config: ssologinservice.PROD.properties
     verify_service_url: http://localhost:9997/sso/login
@@ -102,7 +106,7 @@
     username: UserAdminWebApp
     group_id: net/whydah/identity
     app_name: UserAdminWebApp
-    env_vars: -DIAM_MODE=PROD
+    env_vars: -DIAM_MODE=PROD -DIAM_CONFIG=/home/{{username}}/{{service_config}}
     service_config_template: useradminwebapp.properties
     service_config: useradminwebapp.PROD.properties
     verify_service_url: http://localhost:9996/useradmin
@@ -121,7 +125,7 @@
     username: UserAdminService
     group_id: net/whydah/identity
     app_name: UserAdminService
-    env_vars: -DIAM_MODE=PROD
+    env_vars: -DIAM_MODE=PROD -DIAM_CONFIG=/home/{{username}}/{{service_config}}
     service_config_template: useradminservice.properties
     service_config: useradminservice.PROD.properties
     verify_service_url: http://localhost:9992/useradminservice/1/1/user/ping/pong
@@ -140,7 +144,7 @@
     username: TestWebApp
     group_id: net/whydah/sso/web
     app_name: TestWebApp
-    env_vars: -DIAM_MODE=TEST
+    env_vars: -DIAM_MODE=TEST -DIAM_CONFIG=/home/{{username}}/{{service_config}}
     service_port: 9990
     service_config_template: testwebapp.properties
     service_config: testwebapp.TEST.properties

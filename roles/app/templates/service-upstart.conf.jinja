@@ -9,8 +9,8 @@ stop on runlevel [06]
 #stop on starting runlevel [016]
 
 #respawn
-
+#su -c "nohup /usr/bin/java {{env_vars}} -DIAM_CONFIG=/home/{{username}}/{{service_config}} -jar /home/{{username}}/{{app_name}}.jar" -s /bin/sh - {{username}}
 script
-    su -c "nohup /usr/bin/java {{env_vars}} -DIAM_CONFIG=/home/{{username}}/{{service_config}} -jar /home/{{username}}/{{app_name}}.jar" -s /bin/sh - {{username}}
+    su -c "nohup /usr/bin/java {{env_vars}} -jar /home/{{username}}/{{app_name}}.jar" -s /bin/sh - {{username}}
 end script
 
