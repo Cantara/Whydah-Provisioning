@@ -33,10 +33,10 @@
     #service_config_template: useridentitybackend.properties
     #service_config: useridentitybackend.PROD.properties
     env_mode:
-    env_vars: -DCONSTRETTO_TAGS=dev
+    env_vars: -DCONSTRETTO_TAGS=dev -Dlogback.configurationFile=/home/{{username}}/logback.xml
     service_config_template: useridentitybackend.properties
     service_config: useridentitybackend_override.properties
-    folders_to_copy: prodInitData
+    folders_to_copy: root/
     #verify_service_url: http://localhost:9995/uib/authenticate/application/
   vars_files:
     - vars/uib
