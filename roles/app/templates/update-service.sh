@@ -17,7 +17,7 @@ if [[ $V == *SNAPSHOT* ]]; then
    JARFILE="$artifactId-$build.jar"
    url="$path/$version/$JARFILE"
 else #A specific Release version
-   path="releaseRepo/$groupId/$A"
+   path="releaseRepo/$groupId/$artifactId"
    url=$path/$V/$artifactId-$V.jar
    JARFILE=$artifactId-$V.jar
 fi
@@ -28,10 +28,10 @@ wget -O $JARFILE -q -N $url
 
 
 # Create symlink or replace existing sym link
-if [ -h $A.jar ]; then
-   unlink $A.jar
+if [ -h $artifactId.jar ]; then
+   unlink $artifactId.jar
 fi
-ln -s $JARFILE $A.jar
+ln -s $JARFILE $artifactId.jar
 
 # Delete old jar files
 jar=$artifactId*.jar
