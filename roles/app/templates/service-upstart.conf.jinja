@@ -1,16 +1,10 @@
-# Ubuntu upstart file
-description "{{app_name}} upstart description"
+# Ubuntu upstart file, http://upstart.ubuntu.com/cookbook/
+description "{{app_name}} Upstart Configuration File"
 author "Stig <stig.lau@altran.com>"
 
 start on runlevel [2345]
 stop on runlevel [06]
 
-#start on stopped rc RUNLEVEL=[2345]
-#stop on starting runlevel [016]
-
-#respawn
-#su -c "nohup /usr/bin/java {{env_vars}} -DIAM_CONFIG=/home/{{username}}/{{service_config}} -jar /home/{{username}}/{{app_name}}.jar" -s /bin/sh - {{username}}
 script
     su -c "nohup /usr/bin/java {{env_vars}} -jar /home/{{username}}/{{app_name}}.jar" -s /bin/sh - {{username}}
 end script
-
