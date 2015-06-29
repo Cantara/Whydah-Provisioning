@@ -16,6 +16,10 @@
   template: src=restart-service.sh dest=~/restart-{{app_name}}.sh mode=744
   sudo: false
 
+- name: Create upgrade-service shortcut
+  template: src=upgrade-service.sh dest=~/upgrade-{{app_name}}.sh mode=744
+  sudo: false
+
 - name: App update script
   template: src=update-service.sh dest=/home/{{username}}/update-service.sh mode=744
   sudo_user: "{{username}}"
