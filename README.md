@@ -22,6 +22,8 @@ ansible-playbook provision-whydah.yml
 
 Alternatives:
 
+time ansible-playbook -vvv provision-whydah.yml --private-key=~/.ssh/mykeyfile.pem --tags=uas
+
 * --private-key=~/mykeyfile.pem
 * -vvvv <- For debugging
 * --help
