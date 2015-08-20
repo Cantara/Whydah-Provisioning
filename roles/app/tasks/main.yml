@@ -28,9 +28,10 @@
   command: /home/{{username}}/update-service.sh chdir=/home/{{username}}
   sudo_user: "{{username}}"
 
-- name: Create start-Service.sh script
-  template: src=start-service.sh dest=/home/{{username}}/start-service.sh mode=744 backup=true
-  sudo_user: "{{username}}"
+# Not currently in use. Decide if we should refer to script from upstart or not.
+#- name: Create start-Service.sh script
+#  template: src=start-service.sh dest=/home/{{username}}/start-service.sh mode=744 backup=true
+#  sudo_user: "{{username}}"
 
 - name: App upstart conf
   template: src=service-upstart.conf.jinja dest=/etc/init/{{app_name}}.conf owner=root mode=644 backup=true
