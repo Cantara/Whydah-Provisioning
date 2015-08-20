@@ -2,6 +2,10 @@
 - name: Disable requirement of tty to enable pipelining - If this step fails - temporarily set ansible.cfg pipelining = False
   lineinfile: dest=/etc/sudoers regexp="Defaults    requiretty" line="Defaults    !requiretty"
 
+
+- name: remove JDK 7
+  yum: name=java-1.7.0-openjdk state=absent
+
 - name: Upgrade all packages
   yum: name=* state=latest
 
@@ -13,7 +17,7 @@
   - wget
   - tree
   - java-1.8.0-openjdk
-
+  - vim
 
 - name: Set server identifyer in bash
   lineinfile: dest=~/.bash_profile regexp="^export PS1=" line='export PS1="[\u@\h/{{deployment_identifyer}} \w]$"'
