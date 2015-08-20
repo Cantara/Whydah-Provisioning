@@ -1,24 +1,11 @@
 ---
 # This playbook deploys Whydah to AWS AMI's
 
-- name: Set up Standard server configuration
-  hosts:
-    - Whydah_UserIdentityBackend
-    - Whydah_SecurityTokenService
-    - Whydah_SSOLoginWebApp
-    - Whydah_UserAdminWebApp
-    - Whydah_TestWebApp
-    - Whydah_UserAdminService
-  sudo: true
-  roles:
-    - standard
-  tags:
-    standard
-
 - name: Set up Whydah UserIdentityBackend
   hosts: Whydah_UserIdentityBackend
   sudo: true
   roles:
+    - standard
     - configuration
     - file_transfer
     - app
@@ -38,8 +25,8 @@
     service_config: useridentitybackend_override.properties
     folders_to_copy: root/
     #verify_service_url: http://localhost:9995/uib/authenticate/application/
-  vars_files:
-    - vars/uib
+  #vars_files:
+  #  - vars/uib
   tasks:
   - name: Add UIB specific libraries
     yum: name=openldap-clients state=present
@@ -60,6 +47,7 @@
   hosts: Whydah_SecurityTokenService
   sudo: true
   roles:
+    - standard
     - configuration
     - app
   tags:
@@ -79,6 +67,7 @@
   hosts: Whydah_SSOLoginWebApp
   sudo: true
   roles:
+    - standard
     - configuration
     - app
   tags:
@@ -98,6 +87,7 @@
   hosts: Whydah_UserAdminWebApp
   sudo: true
   roles:
+    - standard
     - configuration
     - app
   tags:
@@ -117,6 +107,7 @@
   hosts: Whydah_UserAdminService
   sudo: true
   roles:
+    - standard
     - configuration
     - app
   tags:
@@ -136,6 +127,7 @@
   hosts: Whydah_TestWebApp
   sudo: true
   roles:
+    - standard
     - configuration
     - app
   tags:
@@ -156,6 +148,7 @@
   hosts: Whydah_SSOLoginWebApp
   sudo: true
   roles:
+    - standard
     - apache
   tags:
     apache

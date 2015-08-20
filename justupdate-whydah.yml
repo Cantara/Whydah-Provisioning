@@ -11,8 +11,8 @@
   vars:
     username: UserIdentityBackend
     app_name: UserIdentityBackend
-  vars_files:
-    - vars/uib
+  #vars_files:
+    #- vars/uib
 
 - name: Update Whydah SecurityTokenService
   hosts: Whydah_SecurityTokenService
