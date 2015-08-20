@@ -9,7 +9,7 @@
 #poll: 15
 
 - name: Create SU-TO-appname shortcut
-  template: src=su-to-user.sh dest=~/{{app_name}}_su_to.sh mode=744
+  template: src=su-to-user.sh dest=~/su_to_{{app_name}}.sh mode=744
   sudo: false
 
 - name: Create restart-service shortcut
