@@ -105,10 +105,12 @@
     username: UserAdminService
     group_id: net/whydah/identity
     app_name: UserAdminService
-    env_vars: -DIAM_MODE=PROD -DIAM_CONFIG=/home/{{username}}/{{service_config}}
+    #env_vars: -DIAM_MODE=PROD -DIAM_CONFIG=/home/{{username}}/{{service_config}}
+    env_vars: -DCONSTRETTO_TAGS=dev
     service_port: "{{service_port_uas}}"
     service_config_template: useradminservice.properties
-    service_config: useradminservice.PROD.properties
+    service_config: useradminservice_override.properties
+    #service_config: useradminservice.PROD.properties
     #verify_service_url: http://localhost:9992/useradminservice/health
   #vars_files:
   #  - vars/userAdminService
