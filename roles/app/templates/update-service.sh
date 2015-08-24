@@ -11,7 +11,7 @@ V={{version}}
 if [[ $V == *SNAPSHOT* ]]; then
    echo Note: If the artifact version contains "SNAPSHOT", the latest snapshot version is downloaded, ignoring the version before SNAPSHOT.
    path="$snapshotRepo/$groupId/$artifactId"
-   version=`curl -s "$path/maven-metadata.xml" | grep "<version>" | sed "s/.*<version>\([^<]*\)<\/version>.*/\1/" | tail -n 1`
+   version=`curl -s "$path/maven-metadata.xml" | grep "<version>"  | grep "$V" | sed "s/.*<version>\([^<]*\)<\/version>.*/\1/" | tail -n 1`
    #echo "version=$version, path=$path"
    build=`curl -s "$path/$version/maven-metadata.xml" | grep '<value>' | head -1 | sed "s/.*<value>\([^<]*\)<\/value>.*/\1/"`
    JARFILE="$artifactId-$build.jar"
